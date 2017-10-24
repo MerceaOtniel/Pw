@@ -1,0 +1,6 @@
+doua tipuri de user:
+-adminul care are dreptul sa adauge produse noi
+-adminul care poate sa accepte sau sa respinga o comanda
+-user care poate vota produsele atat negativ cat si pozitiv
+-userul poate comenta fiecare produs si poate sa vada comentariile de la acel produs
+-userul poate comanda un produs cu adresa unde sa fie livrat si adresa de mail iar in scurt timp daca comanda e acceptata va primi un email
