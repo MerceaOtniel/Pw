@@ -2,6 +2,7 @@
 
 	session_start();
 	session_regenerate_id(TRUE);
+	error_reporting(0);
 	$username = "";
 	$email    = "";
 	$errors = array();
