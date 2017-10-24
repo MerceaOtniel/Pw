@@ -31,7 +31,7 @@ else if($_SESSION['username']!='admin'){
 			</div>
 			<div class="input-group">
 				<label>Pret</label>
-				<input type="number" name="pret" >
+				<input type="number" step="0.01" name="pret" >
 			</div>
 			<button type="submit" class="btn" name="add_food">Add</button>
 			<p><a href="index.php?logout='1'" style="color: red">Logout</a></p>
