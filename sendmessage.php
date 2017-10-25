@@ -9,10 +9,11 @@ $adresa=$_POST['adresa'];
 $mail=$_POST['mail'];
 $meniu=$_POST['meniu'];
 $persoana=$_POST['persoana'];
+$durata=$_POST['durata'];
 
 include(ignoremessage.php);
 
-$message="Meniul :$meniu se va livra la: $adresa pentru persoana: $persoana";
+$message="Meniul :$meniu se va livra la: $adresa pentru persoana: $persoana in aproximativ $durata minute.";
 
 $subject="Comanda pe cale de livrare";
 

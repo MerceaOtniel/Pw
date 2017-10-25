@@ -24,7 +24,7 @@ if(empty($_SESSION['username'])){
       <TEXTAREA name="comment" rows="10" cols="30"></TEXTAREA>
     </div>
     <button type="submit" class="btn" name="add_comment">Add</button>
-    <a href="index.php" class="btn"> Inapoi </a>
+    <a href="index.php" style="text-decoration:none;" class="btn"> Inapoi </a>
 	</form>
 </body>
 <HEAD>

@@ -7,6 +7,25 @@
 	$email    = "";
 	$errors = array();
 
+
+	if(isset($_POST['adauga_bani'])){
+
+		$db=mysqli_connect('localhost','root','','registration');
+		$username=mysqli_real_escape_string($db,$_POST['username']);
+		$suma=mysqli_real_escape_string($db,$_POST['suma']);
+		if(empty($suma)){array_push($errors,"Sum of money required");}
+		if(count($errors)==0){
+			$que1="SELECT suma from users WHERE username='$username'";
+			$res1=mysqli_query($db,$que1);
+			$value = mysqli_fetch_assoc($res1);
+			$suma=$suma+$value['suma'];
+			$que="UPDATE users SET suma='$suma' WHERE username='$username'";
+			$res=mysqli_query($db,$que);
+			$_SESSION['suma'] = $suma;
+			header('location: index.php');
+		}
+	}
+
 	if (isset($_POST['reg_user'])) {
 		$db = mysqli_connect('localhost', 'root', '', 'registration');
 		$username = mysqli_real_escape_string($db, $_POST['username']);
@@ -51,6 +70,7 @@
 		$mail=mysqli_real_escape_string($db1,$_POST['mail']);
 		$meniu=mysqli_real_escape_string($db1,$_POST['categorie']);
 		$pret=mysqli_real_escape_string($db1,$_POST['pret']);
+		$durata=mysqli_real_escape_string($db1,$_POST['durata']);
 		$suma=$_SESSION['suma'];
 
 		if(empty($adresa)){
@@ -62,11 +82,14 @@
 		if($suma < $pret){
 			array_push($errors,"You don't have money");
 		}
-
-
 		$name=$_SESSION['username'];
 		if(count($errors)==0){
-			$query="INSERT into comanda (persoana,adresa,mail,meniu) VALUES ('$name','$adresa','$mail','$meniu')";
+			$suma1=$suma-$pret;
+			$_SESSION['suma'] = $suma1;
+			$db = mysqli_connect('localhost', 'root', '', 'registration');
+			$que="UPDATE users SET suma='$suma1' WHERE username='$name'";
+			$res=mysqli_query($db,$que);
+			$query="INSERT into comanda (persoana,adresa,mail,meniu,durata) VALUES ('$name','$adresa','$mail','$meniu','$durata')";
 			mysqli_query($db1,$query);
 			header('location: index.php?categorie=meniu');
 		}

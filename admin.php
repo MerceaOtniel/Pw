@@ -62,6 +62,7 @@ else if($_SESSION['username']!='admin'){
 		        <input type="hidden" name="persoana" value="<?php echo $rand["persoana"] ?>">
 		        <input type="hidden" name="meniu" value="<?php echo $rand["meniu"] ?>">
 		        <input type="hidden" name="adresa" value="<?php echo $rand["adresa"] ?>">
+						<input type="hidden" name="durata" value="<?php echo $rand["durata"] ?>">
 		        <button type="submit" class="btn" name="send_mail">Accepta comanda</button>
 		    	</form>
 					<form method="post" action="ignoremessage.php" style="padding: 8px; width: 8%;text-align:centre;">

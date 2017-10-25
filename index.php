@@ -33,8 +33,10 @@ if(empty($_SESSION['username'])){
 			<p>Ai suma disponibila de <strong><?php
 				echo $_SESSION['suma'];
 			?></strong></p>
-
-			<p><a href="index.php?logout='1'" style="color: red">Logout</a></p>
+			<br>
+			<p><a href="adaugabani.php" style="text-decoration:none;"class="btn" >Adauga bani</a></p>
+			<br>
+			<p><a href="index.php?logout='1'" style="text-decoration:none;" class="btn" >Logout</a></p>
 		<?php endif ?>
 	</div>
 	<?php include('afisare_tabel.php'); ?>

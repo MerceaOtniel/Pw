@@ -20,6 +20,7 @@ if(empty($_SESSION['username'])){
 		<?php include('errors.php'); ?>
     <input type="hidden" name="categorie" value="<?php echo $_POST['categorie']; ?>">
 		<input type="hidden" name="pret" value="<?php echo $_POST['pret']; ?>">
+		<input type="hidden" name="durata" value="<?php echo $_POST['durata']; ?>">
     <div class="input-group">
       <label>Adresa</label>
       <TEXTAREA name="adresa" rows="10" cols="30"></TEXTAREA>
@@ -27,7 +28,7 @@ if(empty($_SESSION['username'])){
         <input type="email" name="mail">
     </div>
     <button type="submit" class="btn" name="add_command">Add</button>
-    <a href="index.php" class="btn"> Inapoi </a>
+    <a href="index.php" style="text-decoration:none;" class="btn"> Inapoi </a>
 	</form>
 </body>
 <HEAD>
