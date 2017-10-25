@@ -60,6 +60,7 @@ if (isset($_GET["vote"],$_GET["id"])){
 			</form>
 			<form method="post" action="comanda.php" style="padding: 1px; width: 10%;text-align:centre;">
 				<input type="hidden" name="categorie" value="<?php echo $rand["Nume"] ?>">
+				<input type="hidden" name="pret" value="<?php echo $rand["Pret"]  ?>">
 				<button type="submit" class="btn" name="send_mail">Adauga comanda</button>
 			</form>
 		</p>

@@ -23,6 +23,7 @@
 		}
 		$que="SELECT * FROM users WHERE username='$username'";//aici si mai jos verific unicitatea numelui
 		$res=mysqli_query($db,$que);
+
 		if(mysqli_num_rows($res)==1){
 			array_push($errors,"The username is taken");
 		}
@@ -31,6 +32,11 @@
 				$password = md5($password_1);
 				$query = "INSERT INTO users (username, email, password)  VALUES('$username', '$email', '$password')";
 				mysqli_query($db, $query);
+
+				$select_user = "SELECT suma FROM users WHERE username='$username' LIMIT 1"; //wrap it with ` around the field or don't wrap with anything at all
+				$result = mysqli_query($db, $select_user);
+				$value = mysqli_fetch_assoc($result);
+				$_SESSION['suma'] = $value['suma'];
 				$_SESSION['username']=$username;
 				$_SESSION['success']="YOU are now logged in";
 				header('location: index.php');
@@ -44,12 +50,20 @@
 		$adresa=mysqli_real_escape_string($db1,$_POST['adresa']);
 		$mail=mysqli_real_escape_string($db1,$_POST['mail']);
 		$meniu=mysqli_real_escape_string($db1,$_POST['categorie']);
+		$pret=mysqli_real_escape_string($db1,$_POST['pret']);
+		$suma=$_SESSION['suma'];
+
 		if(empty($adresa)){
 			array_push($errors,"Please enter an address");
 		}
 		if(empty($mail)){
 			array_push($errors,"Please enter your mail");
 		}
+		if($suma < $pret){
+			array_push($errors,"You don't have money");
+		}
+
+
 		$name=$_SESSION['username'];
 		if(count($errors)==0){
 			$query="INSERT into comanda (persoana,adresa,mail,meniu) VALUES ('$name','$adresa','$mail','$meniu')";
@@ -118,6 +132,13 @@
 			$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
 			$results = mysqli_query($db, $query);
 
+
+			$select_user = "SELECT suma FROM users WHERE username='$username' LIMIT 1"; //wrap it with ` around the field or don't wrap with anything at all
+			$result = mysqli_query($db, $select_user);
+			$value = mysqli_fetch_assoc($result);
+			$_SESSION['suma'] = $value['suma'];
+
+
 			if(mysqli_num_rows($results)==1 and $username=='admin'){
 				$_SESSION['username'] = $username;
 				$_SESSION['success'] = "You are now logged in";
@@ -135,6 +156,8 @@
 
 	if(isset($_GET['logout'])){
 		unset($_SESSION['username']);
+		unset($_SESSION['suma']);
+		unset($_SESSION['success']);
 		session_destroy();
 		header('location: login.php');
 	}

@@ -29,6 +29,11 @@ if(empty($_SESSION['username'])){
 		<?php endif ?>
 		<?php if (isset($_SESSION["username"])): ?>
 			<p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
+
+			<p>Ai suma disponibila de <strong><?php
+				echo $_SESSION['suma'];
+			?></strong></p>
+
 			<p><a href="index.php?logout='1'" style="color: red">Logout</a></p>
 		<?php endif ?>
 	</div>

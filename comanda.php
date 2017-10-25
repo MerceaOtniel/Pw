@@ -19,6 +19,7 @@ if(empty($_SESSION['username'])){
 
 		<?php include('errors.php'); ?>
     <input type="hidden" name="categorie" value="<?php echo $_POST['categorie']; ?>">
+		<input type="hidden" name="pret" value="<?php echo $_POST['pret']; ?>">
     <div class="input-group">
       <label>Adresa</label>
       <TEXTAREA name="adresa" rows="10" cols="30"></TEXTAREA>
