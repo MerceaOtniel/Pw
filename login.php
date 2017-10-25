@@ -7,7 +7,7 @@
 	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 	<META HTTP-EQUIV="Expires" CONTENT="-1">
 </head>
-<body style="background-image:url(../img/photo4.jpg)">
+<body >
 
 	<div class="header">
 			Welcome to he BigKitchen.
@@ -15,6 +15,7 @@
 	<div class="header">
 		<h2>Login</h2>
 	</div>
+
 	<form method="post" action="login.php">
 
 		<?php include('errors.php'); ?>

@@ -13,6 +13,28 @@ $durata=$_POST['durata'];
 
 include(ignoremessage.php);
 
+$start = "Aleea Actorilor,Timisoara, Romania";
+$destination = $adresa;
+$apiUrl = 'http://maps.googleapis.com/maps/api/directions/json';
+$url = $apiUrl . '?' . 'origin=' . urlencode($start) . '&destination=' . urlencode($destination);
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+$res = curl_exec($curl);
+if(curl_errno($curl)){
+	throw new Exception(curl_error($curl));
+}
+curl_close($curl);
+$json = json_decode(trim($res), true);
+$route = $json['routes'][0];
+$totalDuration = 0;
+foreach($route['legs'] as $leg){
+	$totalDuration = $totalDuration + $leg['duration']['value'];
+}
+$totalDuration=round($totalDuration/60)+2;
+echo 'Total time  is ' . $totalDuration . ' min ';
+
+$durata=$durata+$totalDuration;
+
 $message="Meniul :$meniu se va livra la: $adresa pentru persoana: $persoana in aproximativ $durata minute.";
 
 $subject="Comanda pe cale de livrare";
