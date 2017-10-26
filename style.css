@@ -10,6 +10,9 @@ body {
  	background-repeat: no-repeat;
  	background-attachment: fixed;
 }
+#content {
+  text-align: center;
+}
 
 .header {
 	width: 30%;
