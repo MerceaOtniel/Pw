@@ -10,7 +10,7 @@ if(empty($_SESSION['username'])){
 	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 	<META HTTP-EQUIV="Expires" CONTENT="-1">
 </head>
-<body style="background-image:url(../img/read.jpg)">
+<body style="<?php echo "background-image:url(".$_POST['path'].")"; ?>">
 <?php
 	$db1 = mysqli_connect('localhost', 'root', '', 'forum');
 	$categorie=$_POST['categorie'];

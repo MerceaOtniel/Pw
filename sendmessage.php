@@ -27,15 +27,18 @@ curl_close($curl);
 $json = json_decode(trim($res), true);
 $route = $json['routes'][0];
 $totalDuration = 0;
+$totalDistance=0;
 foreach($route['legs'] as $leg){
 	$totalDuration = $totalDuration + $leg['duration']['value'];
+	$totalDistance=$totalDistance+$leg['distance']['value'];
 }
 $totalDuration=round($totalDuration/60)+2;
+$totalDistance=round($totalDistance/1000);
 echo 'Total time  is ' . $totalDuration . ' min ';
 
 $durata=$durata+$totalDuration;
 
-$message="Meniul :$meniu se va livra la: $adresa pentru persoana: $persoana in aproximativ $durata minute.";
+$message="Meniul :$meniu se va livra la: $adresa pentru persoana: $persoana in aproximativ $durata minute pe distanta de $totalDistance km.";
 
 $subject="Comanda pe cale de livrare";
 
